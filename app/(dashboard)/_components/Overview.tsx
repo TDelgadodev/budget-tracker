@@ -1,6 +1,6 @@
 "use client";
 
-import { DateRangePicker } from "@/components/ui/date-ranger-picker";
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { MAX_DATE_RANGE_DAYS } from "@/lib/constants";
 import { UserSettings } from "@prisma/client";
 import { differenceInDays, startOfMonth } from "date-fns";
