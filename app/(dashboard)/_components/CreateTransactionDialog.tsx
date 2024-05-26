@@ -2,12 +2,12 @@
 
 import {
   Dialog,
-  DialogTrigger,
+  DialogClose,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
-  DialogClose,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,8 @@ import {
   CreateTransactionSchemaType,
 } from "@/schema/transaction";
 import { ReactNode, useCallback, useState } from "react";
+
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -28,15 +30,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import CategoryPicker from "./CategoryPicker";
-import { Popover, PopoverTrigger } from "@/components/ui/popover";
+import CategoryPicker from "@/app/(dashboard)/_components/CategoryPicker";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
-import { PopoverContent } from "@radix-ui/react-popover";
 import { Calendar } from "@/components/ui/calendar";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateTransaction } from "../_actions/transaction";
+import { CreateTransaction } from "@/app/(dashboard)/_actions/transactions";
 import { toast } from "sonner";
 import { DateToUTCDate } from "@/lib/helpers";
 
@@ -45,9 +50,7 @@ interface Props {
   type: TransactionType;
 }
 
-const CreateTransactionDialog = ({ trigger, type }: Props) => {
-  const [open, setOpen] = useState(false);
-
+function CreateTransactionDialog({ trigger, type }: Props) {
   const form = useForm<CreateTransactionSchemaType>({
     resolver: zodResolver(CreateTransactionSchema),
     defaultValues: {
@@ -55,7 +58,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
       date: new Date(),
     },
   });
-
+  const [open, setOpen] = useState(false);
   const handleCategoryChange = useCallback(
     (value: string) => {
       form.setValue("category", value);
@@ -100,6 +103,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
     },
     [mutate]
   );
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
@@ -150,6 +154,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                 </FormItem>
               )}
             />
+
             <div className="flex items-center justify-between gap-2">
               <FormField
                 control={form.control}
@@ -169,6 +174,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="date"
@@ -202,6 +208,7 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
                             if (!value) return;
                             field.onChange(value);
                           }}
+                          initialFocus
                         />
                       </PopoverContent>
                     </Popover>
@@ -233,6 +240,6 @@ const CreateTransactionDialog = ({ trigger, type }: Props) => {
       </DialogContent>
     </Dialog>
   );
-};
+}
 
 export default CreateTransactionDialog;

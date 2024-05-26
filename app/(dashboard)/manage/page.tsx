@@ -1,6 +1,7 @@
 "use client";
 
 import CreateCategoryDialog from "@/app/(dashboard)/_components/CreateCategoryDialog";
+import DeleteCategoryDialog from "@/app/(dashboard)/_components/DeleteCategoryDialog";
 import { CurrencyComboBox } from "@/components/CurrencyComboBox";
 import SkeletonWrapper from "@/components/SkeletonWrapper";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,6 @@ import { Category } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { PlusSquare, TrashIcon, TrendingDown, TrendingUp } from "lucide-react";
 import React from "react";
-import DeleteCategoryDialog from "../_components/DeleteCategoryDialog";
 
 function page() {
   return (

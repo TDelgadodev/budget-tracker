@@ -141,7 +141,7 @@ function CreateCategoryDialog({ type, successCallback, trigger }: Props) {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Category" {...field} autoComplete="off" />
+                    <Input placeholder="Category" {...field} />
                   </FormControl>
                   <FormDescription>
                     This is how your category will appear in the app

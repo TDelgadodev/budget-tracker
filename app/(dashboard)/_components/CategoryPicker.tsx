@@ -33,6 +33,7 @@ function CategoryPicker({ type, onChange }: Props) {
 
   useEffect(() => {
     if (!value) return;
+    // when the value changes, call onChange callback
     onChange(value);
   }, [onChange, value]);
 
