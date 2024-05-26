@@ -1,5 +1,5 @@
 "use client";
-import Logo, { LogoMobile } from "@/components/Logo";
+import Logo, { LogoMobile } from "@/components/logo";
 import { ThemeSwitcherBtn } from "@/components/ThemeSwitcherBtn";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
